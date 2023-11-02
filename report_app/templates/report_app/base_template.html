@@ -1,32 +1,89 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>UCCS CS Students</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    {% load bootstrap5 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
-  </head>
 
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light lead">
-      <img src="{% static 'images/uccs_logo.gif' %}" />
+<style>
+  /* Custom CSS for the image */
+  .custom-image {
+    width: 200px;
+    height: auto;
+  }
+
+  /* Custom CSS for the side navigation bar */
+  .sidenav {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #f8f9fa;
+    padding-top: 20px;
+  }
+
+  .sidenav img {
+    width: 100%;
+    margin: 0; /* Remove default margins */
+  }
+
+  .sidenav a {
+    padding: 15px 25px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    color: #333;
+    display: block;
+  }
+
+  .sidenav a:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+
+  /* Custom CSS for the main content */
+  .content {
+    margin-left: 250px; /* Adjust margin-left to match sidenav width */
+  }
+</style>
+
+<head>
+  <title>Report Application</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  {% load bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+</head>
+
+<body>
+  <!-- Side Navigation Bar -->
+  <div class="sidenav">
+    <img src="{% static 'images/report.gif' %}" alt="Image Description" class="img-fluid custom-image">
+    <a href="{% url 'index' %}">Home</a>
+    <a href="{% url 'teacher' %}">Teachers</a>
+    <a href="{% url 'subject' %}">Subjects</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="nav-link" href="{% url 'index' %}">Home</a>
-            <a class="nav-link" href="{% url 'students' %}">Students</a>
-          </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span
+            class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <!-- Add navigation links here -->
+          </ul>
         </div>
       </div>
     </nav>
 
-    <!-- add block content from html template -->
+    <!-- add block content from the HTML template -->
     {% block content %}
 
     {% endblock %}
-  </body>
+  </div>
+</body>
+
 </html>

@@ -1,0 +1,13 @@
+{% extends 'report_app/base_template.html' %}
+
+{% block content %}
+<h1><strong>{{ student.name }}</strong></h1>
+<p>Grade Level: {{ student.grade }}</p>
+<p>Behavior: {{ student.behavior_grade }}</p>
+<p>Teachers Remarks: {{ student.teacher_report }}</p>
+
+<a href="{% url 'delete_student' student.id %}" class="btn btn-primary">Delete</a>
+<a href="{% url 'update_student' student.id %}" class="btn btn-primary">Update</a>
+
+<a href="{% url 'subject-detail' student.subject.id %}" class="btn btn-primary">Back to Class</a>
+{% endblock %}

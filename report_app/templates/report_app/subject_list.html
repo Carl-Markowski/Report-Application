@@ -1,0 +1,16 @@
+{% extends 'report_app/base_template.html' %}
+
+{% block content %}
+  <h1>Subject List</h1>
+  {% if subject_list %}
+    <ul>
+      {% for subject in subject_list %}
+        <li>
+          <a href="{{ subject.get_absolute_url }}">{{ subject.name }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no subjects. </p>
+  {% endif %}
+{% endblock %}

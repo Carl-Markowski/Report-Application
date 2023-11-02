@@ -1,0 +1,43 @@
+{% extends 'report_app/base_template.html' %}
+
+{% block content %}
+<div class="container">
+  <h1 class="mt-4 mb-3">{{ subject.name }}</h1>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">Class Information</h2>
+          <p class="card-text">
+            <strong>Grade:</strong> {{ subject.grade }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="mt-4">Students in this Class:</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Student Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for student in students %}
+      <tr>
+        <td>{{ student.name }}</td>
+        <td>
+          <a href="{{ student.get_absolute_url }}" class="btn btn-primary btn-sm">View</a>
+          <a href="{% url 'delete_student' student.id %}" class="btn btn-danger btn-sm">Delete</a>
+          <a href="{% url 'update_student' student.id %}" class="btn btn-secondary btn-sm">Update</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <a href="{% url 'create_student' subject.id %}" class="btn btn-success">Add Student</a>
+</div>
+{% endblock %}

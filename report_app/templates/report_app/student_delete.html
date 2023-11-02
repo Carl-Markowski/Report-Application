@@ -1,0 +1,9 @@
+<!--Confirmation page to delete a project-->
+<h1>Confirm Deletion</h1>
+<p>Are you sure you want to delete the project "{{ student.name }}" from the class "{{ subject.name }}"?</p>
+<form method="post" action="{% url 'delete_student' student.id %}">
+    {% csrf_token %}
+    <button type="submit">Confirm</button>
+    <a href="{% url 'subject-detail' student.subject.pk %}">Cancel</a>
+    <input type="hidden" name="confirm" value="yes">
+</form>

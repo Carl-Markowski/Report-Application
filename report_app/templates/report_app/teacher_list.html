@@ -1,0 +1,16 @@
+{% extends 'report_app/base_template.html' %}
+
+{% block content %}
+  <h1>Teacher List</h1>
+  {% if teacher_list %}
+    <ul>
+      {% for teacher in teacher_list %}
+        <li>
+          <a href="{{ teacher.get_absolute_url }}">{{ teacher.name }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no teachers registered.</p>
+  {% endif %}
+{% endblock %}
