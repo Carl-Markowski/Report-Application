@@ -40,6 +40,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'report_app',
     'bootstrap5',
+    'django_nose',
+    'coverage',
+]
+
+# Use nose to run all tests
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+# Tell nose to measure coverage on the 'foo' and 'bar' apps
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-package=report_app',
 ]
 
 MIDDLEWARE = [
@@ -57,7 +68,7 @@ ROOT_URLCONF = 'report_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -124,7 +135,9 @@ STATICFILES_DIRS = [
 os.path.join(BASE_DIR, 'static')
 ]
 
-MEDIA_URL = '/images/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 
 # Default primary key field type

@@ -8,6 +8,7 @@
 
 <a href="{% url 'delete_student' student.id %}" class="btn btn-primary">Delete</a>
 <a href="{% url 'update_student' student.id %}" class="btn btn-primary">Update</a>
+<a href="{% url 'upload_files' student.id%}" class="btn btn-primary">Documents</a>
 
 <a href="{% url 'subject-detail' student.subject.id %}" class="btn btn-primary">Back to Class</a>
 {% endblock %}

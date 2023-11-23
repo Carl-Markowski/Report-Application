@@ -1,0 +1,32 @@
+{% extends 'report_app/base_template.html' %}
+
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload and Display PDFs for {{ student.name }}</title>
+</head>
+<body>
+    <h1>Upload PDF Document for {{ student.name }}</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload</button>
+        <a href="{% url 'student-detail' student.id %}" class="btn btn-primary">Back to Student</a>
+    </form>
+
+    <hr>
+
+    <h2>PDF Documents for {{ student.name }}</h2>
+    <ul>
+        {% for pdf_document in pdf_documents %}
+            <li><a href="{{ pdf_document.file.url }}">{{ pdf_document.file.name }}</a></li>
+        {% empty %}
+            <li>No PDF documents uploaded yet.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+
+{% endblock %}
