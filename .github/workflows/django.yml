@@ -1,27 +1,12 @@
-name: Python 3.11.6 CI
-
-on:
-  push:
-    branches:
-      - main  # Change this to your default branch
-
+name: test_Django
+on: [pull_request, push] # activates the workflow when there is a push or pull request in the repo
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
+  test_project:
+    runs-on: ubuntu-latest # operating system your code will run on
     steps:
-    - uses: actions/checkout@v2
-
-    - name: Set up Python 3.11.6
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.11.6'
-
-    # Add your Python-based steps here, such as installing dependencies, running tests, etc.
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-
-    - name: Run tests
-      run: python manage.py test  # Replace with your testing command
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - run: pip install flake8
+      - run: pip install -r requirements.txt # install all our dependencies for the project
+      - run: pytest . # run pytest test
+      - run: flake8 . # run flake8 test
